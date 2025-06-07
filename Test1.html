@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Number</title>
+</head>
+<body>
+  <h1> Đoán số từ 1 đến 100</h1>
+  <input id="guessInput" type="number" placeholder="Nhập số..." />
+  <button onclick="checkGuess()">Đoán</button>
+  <p id="message"></p>
+  <p id="attempts"></p>
+
+  <script>
+    const secret = Math.floor(Math.random() * 100) + 1;
+    let count = 0;
+
+    function checkGuess() {
+      const guess = Number(document.getElementById("guessInput").value);
+      count++;
+      let msg = "";
+
+      if (guess === secret) {
+        msg = ` Đúng rồi! Bạn đoán sau ${count} lần.`;
+      } else if (guess < secret) {
+        msg = " Số bí mật lớn hơn!";
+      } else {
+        msg = " Số bí mật nhỏ hơn!";
+      }
+
+      document.getElementById("message").textContent = msg;
+      document.getElementById("attempts").textContent = `Lượt đoán: ${count}`;
+    }
+  </script>
+</body>
+</html>
