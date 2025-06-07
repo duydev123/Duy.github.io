@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title> Đoán số bí ẩn</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input, button {
+      font-size: 18px;
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1> Đoán số từ 1 đến 100</h1>
+  <input id="guessInput" type="number" placeholder="Nhập số..." />
+  <button onclick="checkGuess()">Đoán</button>
+  <p id="message"></p>
+
+  <script>
+    const secretNumber = Math.floor(Math.random() * 100) + 1;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById("guessInput").value);
+      const msg = document.getElementById("message");
+
+      if (isNaN(guess) || guess < 1 || guess > 100) {
+        msg.textContent = " Nhập số từ 1 đến 100 kìa!";
+        return;
+      }
+
+      if (guess === secretNumber) {
+        msg.textContent = "🎉 Đoán đúng rồi! Chuẩn bị nhận thưởng...";
+        setTimeout(() => {
+          window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        }, 1500); // delay 1.5 giây cho "căng thẳng"
+      } else if (guess < secretNumber) {
+        msg.textContent = "⬆ Số bí ẩn lớn hơn.";
+      } else {
+        msg.textContent = "⬇ Số bí ẩn nhỏ hơn.";
+      }
+    }
+  </script>
+</body>
+</html>
